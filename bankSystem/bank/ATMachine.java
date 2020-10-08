@@ -5,11 +5,11 @@ import org.kpu.atm.helpdesk.CustomerSvc;
 import org.kpu.atm.util.Statistics;
 
 public class ATMachine {
-	private Account[] accountArray = new Account[1000];		//°í°´°èÁÂ¹è¿­ ÂüÁ¶º¯¼ö
-	private int nMachineBalance;			//atm ÀÜ°í
-	private int nMaxAccountNum;				//°í°´°èÁÂ ÂüÁ¶º¯¼ö ¹è¿­Å©±â
-	private static int nCurrentAccountNum;	//°³¼³µÈ °í°´°èÁÂ ¼ö
-	private String strManagerPassword;		//°ü¸®ÀÚ ºñ¹Ğ¹øÈ£
+	private Account[] accountArray = new Account[1000];		//ê³ ê°ê³„ì¢Œë°°ì—´ ì°¸ì¡°ë³€ìˆ˜
+	private int nMachineBalance;			//atm ì”ê³ 
+	private int nMaxAccountNum;				//ê³ ê°ê³„ì¢Œ ì°¸ì¡°ë³€ìˆ˜ ë°°ì—´í¬ê¸°
+	private static int nCurrentAccountNum;	//ê°œì„¤ëœ ê³ ê°ê³„ì¢Œ ìˆ˜
+	private String strManagerPassword;		//ê´€ë¦¬ì ë¹„ë°€ë²ˆí˜¸
 	private String name;
 	private String passwd;
 	static int idx=100;
@@ -25,10 +25,10 @@ public class ATMachine {
 	}
 	public void createAccount() {
 		
-		System.out.println("----------°³¼³----------");
-		System.out.println("ÀÌ¸§ ÀÔ·Â : ");
+		System.out.println("----------ê°œì„¤----------");
+		System.out.println("ì´ë¦„ ì…ë ¥ : ");
 		name = scan.nextLine();
-		System.out.println("ºñ¹Ğ¹øÈ£ ÀÔ·Â : ");
+		System.out.println("ë¹„ë°€ë²ˆí˜¸ ì…ë ¥ : ");
 		passwd = scan.nextLine();
 	
 		for (int i = 0; i < accountArray.length; i++) {
@@ -40,16 +40,16 @@ public class ATMachine {
 		
 		nCurrentAccountNum+=1;
 		
-		System.out.println(name+"´Ô "+ idx++ +"¹ø °èÁÂ¹øÈ£°¡ Á¤»óÀûÀ¸·Î °³¼³µÆ½À´Ï´Ù.");
+		System.out.println(name+"ë‹˜ "+ idx++ +"ë²ˆ ê³„ì¢Œë²ˆí˜¸ê°€ ì •ìƒì ìœ¼ë¡œ ê°œì„¤ëìŠµë‹ˆë‹¤.");
 	}
-	public void checkMoney() { // °èÁÂÁ¶È¸
+	public void checkMoney() { // ê³„ì¢Œì¡°íšŒ
 		String accountNum;
 		String pass;
 		
-		System.out.println("°èÁÂ¹øÈ£ ÀÔ·Â:");
+		System.out.println("ê³„ì¢Œë²ˆí˜¸ ì…ë ¥:");
 		accountNum = scan.nextLine();
 		
-		System.out.println("ºñ¹Ğ¹øÈ£ ÀÔ·Â : ");
+		System.out.println("ë¹„ë°€ë²ˆí˜¸ ì…ë ¥ : ");
 		pass = scan.nextLine();
 		
 		
@@ -58,29 +58,29 @@ public class ATMachine {
 					Integer Ano = accountArray[i].getnID();
 					String passw = accountArray[i].getStrPassword();
 					if(Ano.toString().equals(accountNum) && passw.equals(pass)) {
-						System.out.println("°èÁÂ ÀÜ¾×:"+ accountArray[i].getnBalance() );
+						System.out.println("ê³„ì¢Œ ì”ì•¡:"+ accountArray[i].getnBalance() );
 						break;
 					}
 				}
 				else {
-					System.out.println("°èÁÂ Á¤º¸°¡ Àß¸øµÇ¾ú½À´Ï´Ù.");
+					System.out.println("ê³„ì¢Œ ì •ë³´ê°€ ì˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤.");
 					break;
 				}
 			}
 	}
 	
-	public void depositMoney() {  // °èÁÂÀÔ±İ
+	public void depositMoney() {  // ê³„ì¢Œì…ê¸ˆ
 		String accountNum;
 		String pass;
 		Integer money;
 		
-		System.out.println("°èÁÂ¹øÈ£ ÀÔ·Â:");
+		System.out.println("ê³„ì¢Œë²ˆí˜¸ ì…ë ¥:");
 		accountNum = scan.nextLine();
 		
-		System.out.println("ºñ¹Ğ¹øÈ£ ÀÔ·Â : ");
+		System.out.println("ë¹„ë°€ë²ˆí˜¸ ì…ë ¥ : ");
 		pass = scan.nextLine();
 		
-		System.out.println("ÀÔ±İ ¾× ÀÔ·Â : ");
+		System.out.println("ì…ê¸ˆ ì•¡ ì…ë ¥ : ");
 		money = Integer.parseInt(scan.nextLine());
 
 		
@@ -90,29 +90,29 @@ public class ATMachine {
 					String passw = accountArray[i].getStrPassword();
 					if(Ano.toString().equals(accountNum) && passw.equals(pass)) {
 						accountArray[i].deposit(money);
-						System.out.println("ÀÔ±İ ÈÄ ÀÜ¾×:"+ accountArray[i].getnBalance() );
+						System.out.println("ì…ê¸ˆ í›„ ì”ì•¡:"+ accountArray[i].getnBalance() );
 						break;
 					}
 				}
 				else {
-					System.out.println("°èÁÂ Á¤º¸°¡ Àß¸øµÇ¾ú½À´Ï´Ù.");
+					System.out.println("ê³„ì¢Œ ì •ë³´ê°€ ì˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤.");
 					break;
 				}
 			}
 	}
 	
-	public void widrawMoney() { // °èÁÂ Ãâ±İ
+	public void widrawMoney() { // ê³„ì¢Œ ì¶œê¸ˆ
 		String accountNum;
 		String pass;
 		Integer money;
 		
-		System.out.println("°èÁÂ¹øÈ£ ÀÔ·Â:");
+		System.out.println("ê³„ì¢Œë²ˆí˜¸ ì…ë ¥:");
 		accountNum = scan.nextLine();
 		
-		System.out.println("ºñ¹Ğ¹øÈ£ ÀÔ·Â : ");
+		System.out.println("ë¹„ë°€ë²ˆí˜¸ ì…ë ¥ : ");
 		pass = scan.nextLine();
 		
-		System.out.println("Ãâ±İ ¾× ÀÔ·Â : ");
+		System.out.println("ì¶œê¸ˆ ì•¡ ì…ë ¥ : ");
 		money = Integer.parseInt(scan.nextLine());
 
 		
@@ -122,18 +122,18 @@ public class ATMachine {
 					String passw = accountArray[i].getStrPassword();
 					if(Ano.toString().equals(accountNum) && passw.equals(pass)) {
 						accountArray[i].widraw(money);
-						System.out.println("Ãâ±İ ÈÄ ÀÜ¾×:"+ accountArray[i].getnBalance() );
+						System.out.println("ì¶œê¸ˆ í›„ ì”ì•¡:"+ accountArray[i].getnBalance() );
 						break;
 					}
 				}
 				else {
-					System.out.println("°èÁÂ Á¤º¸°¡ Àß¸øµÇ¾ú½À´Ï´Ù.");
+					System.out.println("ê³„ì¢Œ ì •ë³´ê°€ ì˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤.");
 					break;
 				}
 			}
 	}
 	
-	public void transfer() { // °èÁÂ ÀÌÃ¼
+	public void transfer() { // ê³„ì¢Œ ì´ì²´
 		String accountNum;
 		String pass;
 		String tAccountNum;
@@ -141,16 +141,16 @@ public class ATMachine {
 		boolean f = false;
 		boolean f2 = false;
 		
-		System.out.println("°èÁÂ¹øÈ£ ÀÔ·Â:");
+		System.out.println("ê³„ì¢Œë²ˆí˜¸ ì…ë ¥:");
 		accountNum = scan.nextLine();
 		
-		System.out.println("ºñ¹Ğ¹øÈ£ ÀÔ·Â : ");
+		System.out.println("ë¹„ë°€ë²ˆí˜¸ ì…ë ¥ : ");
 		pass = scan.nextLine();
 		
-		System.out.println("ÀÌÃ¼°èÁÂ ÀÔ·Â : ");
+		System.out.println("ì´ì²´ê³„ì¢Œ ì…ë ¥ : ");
 		tAccountNum = scan.nextLine();
 
-		System.out.println("ÀÌÃ¼±İ¾× ÀÔ·Â : ");
+		System.out.println("ì´ì²´ê¸ˆì•¡ ì…ë ¥ : ");
 		tMoney = Integer.parseInt(scan.nextLine());
 		
 			for(int i=0; i<accountArray.length; i++) {
@@ -160,53 +160,54 @@ public class ATMachine {
 					
 					if(Ano.toString().equals(accountNum) && passw.equals(pass)) {
 						f2=true;
+						
 						for(int j=0; j<accountArray.length; j++) {
 							Integer tAno = accountArray[j].getnID();
+					
 							if(tAno.toString().equals(tAccountNum)) {
 								accountArray[i].widraw(tMoney);
-								System.out.println("ÇöÀç ÀÜ¾×:"+ accountArray[i].getnBalance());
-								System.out.println("°èÁÂ ÀÌÃ¼¸¦ ¿Ï·áÇß½À´Ï´Ù");
+								accountArray[j].deposit(tMoney);
+								System.out.println("í˜„ì¬ ì”ì•¡:"+ accountArray[i].getnBalance());
+								System.out.println("ê³„ì¢Œ ì´ì²´ë¥¼ ì™„ë£Œí–ˆìŠµë‹ˆë‹¤");
 								f=true;
 								break;
 							}
 						}
 					}
-					if(f==false) {
-						System.out.println("ÀÌÃ¼ °èÁÂ¸¦ ´Ù½Ã È®ÀÎÇÏ¼¼¿ä.");
-						break;
-					}
 				}
-				if(f2==false) {
-					System.out.println("°èÁÂ Á¤º¸°¡ Àß¸øµÇ¾ú½À´Ï´Ù.");
-					break;
-				}
+			}
+			if(f==false) {
+				System.out.println("ì´ì²´ ê³„ì¢Œë¥¼ ë‹¤ì‹œ í™•ì¸í•˜ì„¸ìš”.");
+			}
+			else if(f2==false) {
+				System.out.println("ê³„ì¢Œ ì •ë³´ê°€ ì˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤.");
 			}
 	}
 	
-	public void requestSvc() { // ºñ¹Ğ¹øÈ£ º¯°æ¿äÃ»
+	public void requestSvc() { // ë¹„ë°€ë²ˆí˜¸ ë³€ê²½ìš”ì²­
 		
 		CustomerSvc cSv=new CustomerSvc(accountArray, nCurrentAccountNum);
 		cSv.updatePasswdReq();
 		
 	}
-	public void managerMode() { // °í°´ °ü¸®
+	public void managerMode() { // ê³ ê° ê´€ë¦¬
 		String admin;
 		Statistics stat=new Statistics();
 		
-		System.out.println("°ü¸®ÀÚ ºñ¹Ğ¹øÈ£ ÀÔ·Â:");
+		System.out.println("ê´€ë¦¬ì ë¹„ë°€ë²ˆí˜¸ ì…ë ¥:");
 		admin = scan.nextLine();
 		
 		if(admin.equals(strManagerPassword)) {
-			System.out.println("ATM Çö±İÀÜ°í:\t"+ (nMachineBalance+ stat.sum(accountArray, nCurrentAccountNum)));
-			System.out.println("°í°´ ÀÜ°í ÃÑ¾×:\t"+ (stat.sum(accountArray, nCurrentAccountNum))+"¿ø("+ nCurrentAccountNum +"¸í)");
-			System.out.println("°í°´ ÀÜ°í Æò±Õ:\t"+ (stat.average(accountArray, nCurrentAccountNum))+"¿ø");
-			System.out.println("°í°´ ÀÜ°í ÃÖ°í:\t"+ (stat.max(accountArray, nCurrentAccountNum))+"¿ø");
-			System.out.println("°í°´ °èÁÂ ÇöÈ²(°í°´ ÀÜ°í ³»¸²Â÷¼ø Á¤·Ä)"); // ÀÌ¸§ °èÁÂ¹øÈ£ ±İ¾× ¿ø
+			System.out.println("ATM í˜„ê¸ˆì”ê³ :\t"+ (nMachineBalance+ stat.sum(accountArray, nCurrentAccountNum)));
+			System.out.println("ê³ ê° ì”ê³  ì´ì•¡:\t"+ (stat.sum(accountArray, nCurrentAccountNum))+"ì›("+ nCurrentAccountNum +"ëª…)");
+			System.out.println("ê³ ê° ì”ê³  í‰ê· :\t"+ (stat.average(accountArray, nCurrentAccountNum))+"ì›");
+			System.out.println("ê³ ê° ì”ê³  ìµœê³ :\t"+ (stat.max(accountArray, nCurrentAccountNum))+"ì›");
+			System.out.println("ê³ ê° ê³„ì¢Œ í˜„í™©(ê³ ê° ì”ê³  ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬)"); // ì´ë¦„ ê³„ì¢Œë²ˆí˜¸ ê¸ˆì•¡ ì›
 			
 			Account[] srt=stat.sort(accountArray, nCurrentAccountNum);
 			
 			for(int i=0;i<nCurrentAccountNum;i++) {
-				System.out.println(srt[i].getAccountName()+"\t"+srt[i].getnID()+"\t"+srt[i].getnBalance()+"¿ø");
+				System.out.println(srt[i].getAccountName()+"\t"+srt[i].getnID()+"\t"+srt[i].getnBalance()+"ì›");
 			}
 		}
 		
@@ -215,14 +216,14 @@ public class ATMachine {
 		System.out.println("-----------------------");
 		System.out.println("-       KPU bank      -");
 		System.out.println("-----------------------");
-		System.out.println(" 1. °èÁÂ °³¼³");
-		System.out.println(" 2. °èÁÂ Á¶È¸");
-		System.out.println(" 3. °èÁÂ ÀÔ±İ");
-		System.out.println(" 4. °èÁÂ Ãâ±İ");
-		System.out.println(" 5. °èÁÂ ÀÌÃ¼");
-		System.out.println(" 6. °í°´ ¼¾ÅÍ");
-		System.out.println(" 7. °í°´ °ü¸®");
-		System.out.println(" 9. ¾÷¹« Á¾·á");
+		System.out.println(" 1. ê³„ì¢Œ ê°œì„¤");
+		System.out.println(" 2. ê³„ì¢Œ ì¡°íšŒ");
+		System.out.println(" 3. ê³„ì¢Œ ì…ê¸ˆ");
+		System.out.println(" 4. ê³„ì¢Œ ì¶œê¸ˆ");
+		System.out.println(" 5. ê³„ì¢Œ ì´ì²´");
+		System.out.println(" 6. ê³ ê° ì„¼í„°");
+		System.out.println(" 7. ê³ ê° ê´€ë¦¬");
+		System.out.println(" 9. ì—…ë¬´ ì¢…ë£Œ");
 		
 	}
 }
