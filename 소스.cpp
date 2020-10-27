@@ -1,68 +1,62 @@
-#include <iostream>
-#include<string>
+#include<iostream>
 using namespace std;
 
 class Node {
 public:
 	int data;
-	Node* next;
-
-	Node() {
+	Node* parent;
+	Node* left;
+	Node* right;
+	Node(){
 		data = 0;
-		next = NULL;
+		parent = NULL;
+		left = NULL;
+		right = NULL;
 	}
 };
-
-class Stack {
+class Tree {
 public:
-	int size;
-	Node* top;
 
-	Stack() {
-		size = 0;
-		top = NULL;
+	Node* root;
+	Node* cur;
+	Tree() {
+		cur = NULL;
+		root = new Node;
+		root->data = 10;
 	}
-
-
-	void pop() {
-		if (size == 0)
-			return;
-		else {
-			Node* tmp = new Node;
-			tmp = top;
-			int ttmp = tmp->data;
-			top = top->next;
-			delete tmp;
-			size--;
-			cout<< ttmp;
-		}
-	}
-	void insert(int i){
+	void insert(int data) {
 		Node* newnode = new Node;
-		newnode->data = i;
-		if (top == NULL) {
-			top = newnode;
+		newnode->data = data;
+
+		if (root->left == NULL) {
+			root->left = newnode;
+			cur = newnode;
+			newnode->parent = root;
 		}
 		else {
-			newnode->next = top;
-			top = newnode;
+			cur->right = newnode;
+			newnode->parent = cur;
+			cur = newnode;
 		}
-		size++;
+	}
+	int findParent(Node* p) {
+		cout << p->data << endl;
+		if (p->parent->left == p)
+			return p->parent->data;
+		else
+			return findParent(p->parent);
 	}
 };
-
 
 int main() {
-	Stack s;
-	string num;
-	cin >> num;
+	Tree t;
+	t.insert(2);
+	t.insert(3);
+	t.insert(4);
+	t.insert(5);
+	t.insert(6);
+	t.insert(7);
+	t.insert(8);
 
-	for (int i = 0; i < num.length(); i++) {
-		s.insert(num[i] - '0');
-	}
-	while (s.size !=0)
-	{
-		s.pop();
-	}
-	cout << "\n";
+	cout << "찐부모노드는? " << t.findParent(t.cur);
 }
