@@ -28,7 +28,10 @@ def solution(n, m):
 
     return [comDiv,comMul]
     
-    # 숏코딩, 유클리드 호제법
+    # 숏코딩, 유클리드 호제법 
+    # n = a % b, n = 0일 때, b가 최대공약수 
+    # 최소공배수 = a*b/최대공약수
+    
 def gcdlcm(a, b):
     c, d = max(a, b), min(a, b)
     t = 1
